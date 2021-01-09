@@ -13,12 +13,21 @@ ORDER BY Employees.FirstName ASC
 
 SELECT * FROM Employees
 
--- SELECT AVG(SALARIES) FROM Employees
--- There is no salaries column for employees
+-- Needed to add column for salary
+ALTER TABLE Employees
+ADD Salary INT
 
--- SELECT Employees.FirstName FROM Employees
--- WHERE Employees.Salary = (Select Max(employees.salary) from Employees)
--- There is no salaries column for employees
+UPDATE Employees
+SET Employees.Salary = 20000
+
+UPDATE Employees
+SET Employees.Salary = 40000
+WHERE Extension LIKE '5176'
+
+SELECT AVG(Employees.Salary) FROM Employees
+
+SELECT Employees.FirstName FROM Employees
+WHERE Employees.Salary = (Select Max(employees.salary) from Employees)
 
 SELECT * FROM Employees
 WHERE Employees.Notes LIKE '% BA %'
@@ -28,8 +37,8 @@ OR Employees.Notes LIKE 'BA %'
 SELECT COUNT(*) FROM Orders
 Group BY Orders.OrderID
 
+-- FIND TOTAL OF WHAT FOR EACH ORDER?
 -- SELECT * FROM Orders
--- FIND TOTAL OF WHAT?
 
 SELECT * From Employees
 WHERE Employees.HireDate > '1/1/1994'
